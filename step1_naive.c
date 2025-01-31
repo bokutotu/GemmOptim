@@ -19,6 +19,7 @@
  * @brief 行列乗算（C = A * B）を行う関数
  * @note Row-Major 行列を想定
  *       最も、ナイーブな3重ループによる実装
+ *       Aのi行目とBのj列目の内積をCのi行j列目に格納
  *
  * @param m 行列 A の行数
  * @param n 行列 B の列数
