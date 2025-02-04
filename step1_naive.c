@@ -58,7 +58,7 @@ int main(void) {
 
     clock_t start = clock();
 
-    for (int i = 0; i < 100; ++i) {
+    for (int i = 0; i < 10; ++i) {
         naive_gemm(n, k, m, A, B, C);
     }
 
@@ -69,7 +69,7 @@ int main(void) {
         checksum += C[i];
     }
 
-    double time_spent = (double)(end - start) / CLOCKS_PER_SEC / 100;
+    double time_spent = (double)(end - start) / CLOCKS_PER_SEC / 10;
     double flops = 2.0 * n * k * m;
     double gflops = flops / (time_spent * 1e9);
 

@@ -39,7 +39,8 @@ int main(void) {
 
     int iterations = 100;
 
-    clock_t start = clock();
+    struct timespec start, end;
+    clock_gettime(CLOCK_MONOTONIC, &start);
 
     for (int i = 0; i < iterations; i++) {
         cblas_sgemm(
@@ -60,14 +61,16 @@ int main(void) {
         );
     }
 
-    clock_t end = clock();
+    clock_gettime(CLOCK_MONOTONIC, &end);
 
     double checksum = 0.0;
     for (int i = 0; i < m*n; i++) {
         checksum += C[i];
     }
 
-    double time_spent = (double)(end - start) / CLOCKS_PER_SEC / iterations;
+    double time_spent = (end.tv_sec - start.tv_sec);
+    time_spent += (end.tv_nsec - start.tv_nsec) / 1e9;
+    time_spent /= iterations;
 
     double flops = 2.0 * (double)m * (double)k * (double)n;
     double gflops = flops / (time_spent * 1.0e9);

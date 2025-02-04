@@ -132,8 +132,8 @@ int main(void) {
         checksum += C[i];
     }
 
-    double time_spent = (double)(end - start) / CLOCKS_PER_SEC / 100;  // 100回平均
-    double flops = 2.0 * (double)m * (double)k * (double)n;           // 乗算+加算 => 2*k
+    double time_spent = (double)(end - start) / CLOCKS_PER_SEC / 100;
+    double flops = 2.0 * (double)m * (double)k * (double)n;
     double gflops = flops / (time_spent * 1e9);
 
     printf("Blocked GEMM (Tiling)\n");
